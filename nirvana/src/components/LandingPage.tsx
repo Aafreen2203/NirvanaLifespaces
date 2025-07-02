@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
       {/* Animated Lines - Above Nirvana */}
       <div ref={linesRef} className="absolute inset-0 pointer-events-none z-30">
-        <div className="absolute left-0" style={{ top: '24%' }}>
+        <div className="absolute left-0" style={{ top: '20%' }}>
           <div className="w-40 sm:w-62 h-0.5 bg-gradient-to-r from-[#B86830] to-transparent animate-pulse" />
         </div>
       </div>
@@ -40,8 +40,8 @@ const App: React.FC = () => {
           <span ref={nirvanaRef} className="text-[#F8D794] drop-shadow-lg block">Nirvana</span>
           <span ref={gardensRef} className="text-[#284139] drop-shadow-lg block">Gardens</span>
         </h1>
-        <p ref={paraRef} className="max-w-xs sm:max-w-md md:max-w-xl mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl text-[#F8D794] drop-shadow-md">
-          Where luxury meets tranquility. Experience premium living in the heart of the city with world-class amenities and breathtaking views.
+        <p ref={paraRef} className="max-w-lg sm:max-w-xl md:max-w-2xl mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl text-[#F8D794] drop-shadow-md">
+          A serene blend of luxury and nature, this premium residential enclave is crafted by <a href="https://www.tharwaniinfrastructures.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-[#B86830] underline hover:text-[#F8D794] transition-colors">Tharwani Infrastructures</a>, a name trusted for innovative design and quality living spaces. Experience elevated living with world-class amenities in the heart of the city.
         </p>
         <div ref={buttonsRef} className="mt-6 sm:mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 relative w-full max-w-xs sm:max-w-none">
           <button className="bg-[#B86830] hover:bg-[#284139] text-[#F8D794] px-6 sm:px-8 py-3 rounded shadow-lg transition text-lg sm:text-xl font-bold border-2 border-[#B86830] w-full sm:w-auto">
@@ -49,7 +49,7 @@ const App: React.FC = () => {
           </button>
           <div className="relative w-full sm:w-auto">
             {/* Animated Line - Above Schedule Visit Button */}
-            <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 w-32 sm:w-44 h-0.5 bg-gradient-to-r from-[#F8D794] to-transparent animate-pulse" />
+            <div className="absolute -top-6 sm:-top-[-8] left-1/2 -translate-x-1/2 w-32 sm:w-44 h-0.5 bg-gradient-to-r from-[#F8D794] to-transparent animate-pulse" />
             <button className="border-2 border-[#F8D794] px-6 sm:px-8 py-3 text-[#F8D794] hover:bg-[#F8D794] hover:text-[#284139] rounded transition text-lg sm:text-xl font-bold bg-transparent w-full sm:w-auto">
               Schedule Visit
             </button>
