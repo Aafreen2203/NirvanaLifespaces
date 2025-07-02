@@ -2,16 +2,16 @@ import React from 'react';
 
 // List of 10 amenities with image filenames (user will add these images to the amenities folder)
 const amenities = [
-  { img: '/src/assets/amenities/gym.png', name: 'Gymnasium' },
-  { img: '/src/assets/amenities/spa.png', name: 'SPA' },
-  { img: '/src/assets/amenities/pool-table.png', name: 'Pool Table' },
-  { img: '/src/assets/amenities/table-tennis.png', name: 'Table Tennis' },
-  { img: '/src/assets/amenities/chess.png', name: 'Chess' },
-  { img: '/src/assets/amenities/carrom.png', name: 'Carrom' },
-  { img: '/src/assets/amenities/kids-play.png', name: 'Kids Play Area' },
-  { img: '/src/assets/amenities/jogging.png', name: 'Jogging Track' },
-  { img: '/src/assets/amenities/court.png', name: 'Multi-Purpose Court' },
-  { img: '/src/assets/amenities/pool.png', name: 'Main Pool' },
+  { img: '/src/assets/gym.png', name: 'Gymnasium' },
+  { img: '/src/assets/spa.png', name: 'SPA' },
+  { img: '/src/assets/pool-table.png', name: 'Pool Table' },
+  { img: '/src/assets/table-tennis.png', name: 'Table Tennis' },
+  { img: '/src/assets/chess.png', name: 'Chess' },
+  { img: '/src/assets/carrom.png', name: 'Carrom' },
+  { img: '/src/assets/kids-play.png', name: 'Kids Play Area' },
+  { img: '/src/assets/jogging.png', name: 'Jogging Track' },
+  { img: '/src/assets/court.png', name: 'Multi-Purpose Court' },
+  { img: '/src/assets/pool.png', name: 'Main Pool' },
 ];
 
 const Amenities = () => {
