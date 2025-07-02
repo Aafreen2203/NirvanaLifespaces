@@ -1,5 +1,6 @@
 import LandingPage from './components/LandingPage';
 import FeaturesPage from './components/FeaturesPage';
+import Amenities from './components/Amenities';
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <LandingPage />
       <FeaturesPage />
+      <Amenities />
     </>
   );
 }
