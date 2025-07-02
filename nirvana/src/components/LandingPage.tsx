@@ -1,138 +1,63 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import React, { useRef, useEffect } from "react";
+import Navbar from "./Navbar";
+import b5 from "../assets/b5.png";
+import gsap from "gsap";
 
-const houseImg =
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80';
-
-const LandingPage: React.FC = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
-  const searchRef = useRef<HTMLDivElement>(null);
+const App: React.FC = () => {
+  const linesRef = useRef<HTMLDivElement>(null);
+  const nirvanaRef = useRef<HTMLSpanElement>(null);
+  const gardensRef = useRef<HTMLSpanElement>(null);
+  const paraRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      heroRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
-    );
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, x: -40 },
-      { opacity: 1, x: 0, duration: 1, delay: 0.5, ease: 'power3.out' }
-    );
-    gsap.fromTo(
-      searchRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1, delay: 1, ease: 'power3.out' }
-    );
+    // Smooth scrolling
+    document.documentElement.style.scrollBehavior = "smooth";
+    // GSAP staggered animation
+    gsap.set([nirvanaRef.current, gardensRef.current, paraRef.current, buttonsRef.current], { y: 60, opacity: 0 });
+    gsap.to([nirvanaRef.current, gardensRef.current], { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 });
+    gsap.to(paraRef.current, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.8 });
+    gsap.to(buttonsRef.current, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 1.1 });
   }, []);
 
   return (
-  <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-blue-400 flex flex-col">
-  {/* Navbar */}
-      <nav className="flex justify-between items-center px-10 py-6 text-white">
-        <div className="flex items-center gap-2 text-2xl font-bold">
-          <span className="inline-block bg-white rounded p-1 mr-2">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-              <path
-                fill="#2563eb"
-                d="M12 3l9 9-1.5 1.5L12 5.5 4.5 13.5 3 12l9-9z"
-              />
-              <path fill="#2563eb" d="M5 13v6h14v-6h2v8H3v-8h2z" />
-            </svg>
-          </span>
-          Rent H&U
-        </div>
-        <ul className="flex gap-8 text-lg font-medium">
-          <li><a href="#" className="hover:text-blue-300">Home</a></li>
-          <li><a href="#" className="hover:text-blue-300">Contacts</a></li>
-          <li><a href="#" className="hover:text-blue-300">Support</a></li>
-          <li><a href="#" className="hover:text-blue-300">Location</a></li>
-          <li><a href="#" className="hover:text-blue-300">About us</a></li>
-        </ul>
-        <button className="bg-white text-blue-700 px-6 py-2 rounded-full font-semibold shadow hover:bg-blue-100 transition">
-          Try now
-        </button>
-      </nav>
+    <div
+      className="h-screen bg-cover bg-center relative font-serif"
+      style={{ backgroundImage: `url(${b5})`, fontFamily: "'Merriweather', serif" }}
+    >
+      <div className="absolute inset-0 z-10" style={{background: "linear-gradient(90deg, #284139cc 0%, #28413966 60%, #28413933 100%)"}} />
+      <Navbar />
 
-      {/* Hero Section */}
-      <div
-        ref={heroRef}
-        className="flex-1 flex flex-col md:flex-row items-center justify-between px-10 md:px-24 py-10 gap-10"
-      >
-        {/* Text */}
-        <div className="flex-1 max-w-xl space-y-6">
-          <h1
-            ref={textRef}
-            className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-lg"
-          >
-            Finding Your New <br /> Home Is Simple
-          </h1>
-          <p className="text-lg text-blue-100 max-w-md">
-            RentHomes.com is your go to destination for finding the perfect rental
-            home to suit your needs. With thousands of property listings across the
-            United States, and Europe.
-          </p>
-          <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full font-semibold shadow hover:bg-blue-700 transition flex items-center gap-2">
-            Search
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
-              <path
-                stroke="#fff"
-                strokeWidth="2"
-                d="M5 12h14m-7-7l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* House Image */}
-        <div className="flex-1 flex justify-center items-center">
-          <img
-            src={houseImg}
-            alt="Modern House"
-            className="rounded-3xl shadow-2xl w-full max-w-lg object-cover"
-          />
+      {/* Animated Lines - Above Nirvana */}
+      <div ref={linesRef} className="absolute inset-0 pointer-events-none z-30">
+        <div className="absolute left-0" style={{ top: '24%' }}>
+          <div className="w-40 sm:w-62 h-0.5 bg-gradient-to-r from-[#B86830] to-transparent animate-pulse" />
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div ref={searchRef} className="relative flex justify-center -mt-10 z-10">
-        <div className="bg-white rounded-full shadow-lg flex flex-col md:flex-row items-center px-6 py-4 gap-4 md:gap-8 w-full max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-2 md:gap-0 md:items-center w-full md:w-auto">
-            <span className="text-gray-500 text-sm md:mr-2">City Street</span>
-            <input
-              type="text"
-              placeholder="123Street"
-              className="bg-transparent outline-none font-semibold text-gray-800 w-32 md:w-24"
-            />
-          </div>
-          <div className="flex flex-col md:flex-row gap-2 md:gap-0 md:items-center w-full md:w-auto">
-            <span className="text-gray-500 text-sm md:mr-2">Typology of rent</span>
-            <input
-              type="text"
-              placeholder="Villa"
-              className="bg-transparent outline-none font-semibold text-gray-800 w-24"
-            />
-          </div>
-          <div className="flex flex-col md:flex-row gap-2 md:gap-0 md:items-center w-full md:w-auto">
-            <span className="text-gray-500 text-sm md:mr-2">Price</span>
-            <input
-              type="text"
-              placeholder="€ 950,000.00"
-              className="bg-transparent outline-none font-semibold text-gray-800 w-32 md:w-32"
-            />
-          </div>
-          <button className="bg-blue-700 text-white px-8 py-2 rounded-full font-semibold shadow hover:bg-blue-800 transition flex items-center gap-2">
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8" stroke="#fff" strokeWidth="2" />
-              <path stroke="#fff" strokeWidth="2" d="M21 21l-4.35-4.35" />
-            </svg>
-            Search
+      <div className="relative z-20 flex flex-col justify-center items-start h-full px-4 sm:px-8 md:px-16 text-[#F8D794]">
+        <h1 className="text-5xl sm:text-7xl md:text-9xl font-extrabold leading-tight">
+          <span ref={nirvanaRef} className="text-[#F8D794] drop-shadow-lg block">Nirvana</span>
+          <span ref={gardensRef} className="text-[#284139] drop-shadow-lg block">Gardens</span>
+        </h1>
+        <p ref={paraRef} className="max-w-xs sm:max-w-md md:max-w-xl mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl text-[#F8D794] drop-shadow-md">
+          Where luxury meets tranquility. Experience premium living in the heart of the city with world-class amenities and breathtaking views.
+        </p>
+        <div ref={buttonsRef} className="mt-6 sm:mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 relative w-full max-w-xs sm:max-w-none">
+          <button className="bg-[#B86830] hover:bg-[#284139] text-[#F8D794] px-6 sm:px-8 py-3 rounded shadow-lg transition text-lg sm:text-xl font-bold border-2 border-[#B86830] w-full sm:w-auto">
+            Explore Properties
           </button>
+          <div className="relative w-full sm:w-auto">
+            {/* Animated Line - Above Schedule Visit Button */}
+            <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 w-32 sm:w-44 h-0.5 bg-gradient-to-r from-[#F8D794] to-transparent animate-pulse" />
+            <button className="border-2 border-[#F8D794] px-6 sm:px-8 py-3 text-[#F8D794] hover:bg-[#F8D794] hover:text-[#284139] rounded transition text-lg sm:text-xl font-bold bg-transparent w-full sm:w-auto">
+              Schedule Visit
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default LandingPage;
+export default App;
