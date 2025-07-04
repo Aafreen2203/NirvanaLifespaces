@@ -118,7 +118,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     shopping: {
       icon: "🛍️",
       title: "Shopping Centers",
-      color: "from-pink-500 to-rose-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "Big Bazaar", "Reliance Fresh", "D-Mart", "More Supermarket",
         "Spencer's", "Kalyan Shopping Complex", "City Center Mall",
@@ -128,7 +128,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     healthcare: {
       icon: "🏥",
       title: "Healthcare",
-      color: "from-blue-500 to-cyan-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "Jupiter Hospital", "Criticare Hospital", "Kalyan Hospital",
         "Shree Hospital", "Apex Hospital", "Noble Hospital",
@@ -138,7 +138,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     education: {
       icon: "🎓",
       title: "Educational Institutes",
-      color: "from-green-500 to-emerald-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "St. Xavier's High School", "Podar International School",
         "Ryan International", "Delhi Public School", "Kalyan University",
@@ -148,7 +148,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     entertainment: {
       icon: "🎬",
       title: "Entertainment",
-      color: "from-purple-500 to-violet-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "PVR Cinemas", "INOX Movies", "Carnival Cinemas",
         "Gaming Zones", "Bowling Alleys", "Adventure Parks",
@@ -158,7 +158,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     banking: {
       icon: "🏦",
       title: "ATM/Banks",
-      color: "from-orange-500 to-amber-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "State Bank of India", "HDFC Bank", "ICICI Bank",
         "Axis Bank", "Bank of Maharashtra", "Union Bank",
@@ -168,7 +168,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     hospitality: {
       icon: "🏨",
       title: "Hospitality",
-      color: "from-indigo-500 to-blue-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "Hotel Regency", "Business Hotels", "Budget Accommodations",
         "Guest Houses", "Service Apartments", "Banquet Halls",
@@ -178,7 +178,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     recreation: {
       icon: "⚽",
       title: "Recreation",
-      color: "from-teal-500 to-cyan-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "Sports Clubs", "Swimming Pools", "Fitness Centers",
         "Yoga Studios", "Parks & Gardens", "Jogging Tracks",
@@ -188,7 +188,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
     wellness: {
       icon: "💆",
       title: "Salons/Spa",
-      color: "from-rose-500 to-pink-500",
+      color: "from-[#B86830] to-[#B86830]",
       facilities: [
         "Lakme Salon", "VLCC", "Naturals", "Jawed Habib",
         "Spa Centers", "Beauty Parlors", "Wellness Centers",
@@ -312,7 +312,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
             </div>
 
             {/* Floating Info Cards */}
-            <div className="absolute -top-60 -right-40 bg-[#284139]/20 rounded-lg shadow-lg p-4 border border-gray-100">
+            <div className="absolute -top-40 -right-40 bg-[#284139]/20 rounded-lg shadow-lg p-4 border border-gray-100">
               <div className="text-lg text-gray-900 mb-1">UPCOMING</div>
               <div className="text-md font-medium text-gray-800">MTHL Project</div>
             </div>
@@ -338,15 +338,13 @@ const KalyanConnectivityShowcase: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categoryKeys.map((category) => {
               const facility = nearbyFacilities[category];
+              const isActive = activeCategory === category;
               return (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-full transition-all duration-300 ${
-                    activeCategory === category
-                      ? `bg-gradient-to-r ${facility.color} text-white shadow-lg scale-105`
-                      : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md hover:shadow-lg'
-                  }`}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-full border-2 border-[#B86830] transition-all duration-300
+                     ${isActive ? 'bg-[#B86830] text-[#F8D794] shadow-lg scale-105' : 'bg-white/30 text-[#B86830] hover:bg-[#284139] hover:text-[#F8D794] shadow-md hover:shadow-lg'}`}
                 >
                   <span className="text-3xl">{facility.icon}</span>
                   <span className="font-medium text-xl">{facility.title}</span>
@@ -356,7 +354,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
           </div>
 
           {/* Active Category Display */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <div className="bg-white/50 rounded-2xl shadow-xl p-8 border border-gray-100">
             <div className="flex items-center mb-6">
               <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].color} flex items-center justify-center text-2xl text-white mr-4`}>
                 {nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].icon}
@@ -374,11 +372,11 @@ const KalyanConnectivityShowcase: React.FC = () => {
               {nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].facilities.map((facility, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-gray-50 to-white p-4 rounded-lg border border-gray-200 hover:shadow-md hover:scale-105 transition-all duration-300 cursor-pointer group"
+                  className="bg-gradient-to-br from-gray-50/40 to-white/50 p-4 rounded-lg border border-gray-200 hover:shadow-md hover:scale-105 transition-all duration-300 cursor-pointer group"
                 >
                   <div className="flex items-center space-x-3">
                     <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].color} group-hover:scale-125 transition-transform duration-300`}></div>
-                    <span className="text-gray-800 font-medium group-hover:text-[#390517] transition-colors duration-300">
+                    <span className="text-gray-800 text-lg font-medium group-hover:text-[#390517] transition-colors duration-300">
                       {facility}
                     </span>
                   </div>
