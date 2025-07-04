@@ -1,57 +1,43 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import edu from "../assets/edu.jpg"
+import healthcare from "../assets/healthcare.jpg"
+import shopping from "../assets/shopping.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ConnectivityPage: React.FC = () => {
+const KalyanConnectivityShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<HTMLImageElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation
-      gsap.fromTo(heroRef.current, 
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
-      );
-
-      // Map animation
-      gsap.fromTo(mapRef.current,
-        { opacity: 0, scale: 0.8, rotationY: 15 },
-        { 
-          opacity: 1, 
-          scale: 1, 
-          rotationY: 0,
-          duration: 1.5, 
-          ease: "power3.out",
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: mapRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Content animation
-      gsap.fromTo(contentRef.current?.children || [],
+      // Left content animation
+      gsap.fromTo(leftContentRef.current?.children || [],
         { opacity: 0, x: -50 },
         {
           opacity: 1,
           x: 0,
           duration: 0.8,
           stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
+          ease: "power3.out"
+        }
+      );
+
+      // Map animation
+      gsap.fromTo(mapRef.current,
+        { opacity: 0, scale: 0.9, x: 50 },
+        {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.3
         }
       );
 
@@ -63,162 +49,178 @@ const ConnectivityPage: React.FC = () => {
           y: 0,
           duration: 0.6,
           stagger: 0.1,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: featuresRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
+          ease: "power2.out",
+          delay: 0.5
         }
       );
 
-      // Floating animation for decorative elements
-      gsap.to(".floating", {
-        y: -20,
-        duration: 2,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-        stagger: 0.3
-      });
+      // Images animation
+      gsap.fromTo(imagesRef.current?.children || [],
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          delay: 0.8
+        }
+      );
 
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const features = [
-    { icon: "🚗", title: "Road Networks", desc: "Well-developed connectivity to Thane, Bhiwandi & Navi Mumbai" },
-    { icon: "🚊", title: "Rail Access", desc: "Direct railway connections for seamless commuting" },
-    { icon: "🏗️", title: "MTHL Project", desc: "Upcoming Mumbai Trans-Harbour Link for enhanced connectivity" },
-    { icon: "🛣️", title: "Ring Road", desc: "Kalyan Ring Road development for improved infrastructure" },
-    { icon: "🏥", title: "Healthcare", desc: "Proximity to quality healthcare facilities" },
-    { icon: "🎓", title: "Education", desc: "Access to reputed schools and educational institutions" }
+  const keyFeatures = [
+    {
+      icon: "🚗",
+      title: "Strategic Road Networks",
+      description: "Direct connectivity to Thane, Bhiwandi, and Navi Mumbai"
+    },
+    {
+      icon: "🚊",
+      title: "Railway Excellence",
+      description: "Seamless access to Kalyan Railway Station"
+    },
+    {
+      icon: "🏗️",
+      title: "Future Infrastructure",
+      description: "MTHL and Ring Road projects enhancing connectivity"
+    }
+  ];
+
+  const amenityImages = [
+    { src: shopping, alt: "Shopping Centers", label: "Shopping" },
+    { src: healthcare, alt: "Healthcare Facilities", label: "Healthcare" },
+    { src: edu, alt: "Educational Institutions", label: "Education" }
   ];
 
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen bg-[#284139]/40 overflow-hidden"
-      style={{ fontFamily: "'Merriweather', serif" }}
-    >
-      {/* Decorative Background Elements */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="floating absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-xl"></div>
-        <div className="floating absolute top-40 right-20 w-48 h-48 bg-green-200/20 rounded-full blur-xl"></div>
-        <div className="floating absolute bottom-20 left-1/4 w-40 h-40 bg-purple-200/20 rounded-full blur-xl"></div>
+    <div ref={containerRef} className="min-h-screen bg-[#F8D794]/30 flex" style={{ fontFamily: "'Merriweather', serif" }}>
+      {/* Left Content Panel */}
+      <div className="w-1/3 p-12 flex flex-col justify-center">
+        <div ref={leftContentRef} className="max-w-lg">
+          {/* Subtitle */}
+          <div className="mb-4">
+            <span className="text-md font-medium text-[#111A19] tracking-wider uppercase" style={{ fontFamily: "'Merriweather', serif" }}>
+              THE CONNECTIVITY BEGINS
+            </span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="text-7xl font-light text-[#390517] mb-8 leading-tight">
+            Kalyan's Prime
+            <br />
+            <span className="font-normal">Location</span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-gray-600 text-2xl leading-relaxed mb-8">
+            Discover unparalleled convenience and connectivity in the heart of Kalyan. 
+            Where modern infrastructure meets strategic location advantages.
+          </p>
+
+          {/* Key Feature Section */}
+          <div className="mb-8">
+            <div className="flex items-center mb-4">
+              <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+              <h2 className="text-4xl font-medium text-[#390517]">NIRVANA GARDENS</h2>
+            </div>
+            <p className="text-gray-600 text-2xl leading-relaxed mb-6">
+              Situated on Gandhare Road in Kalyan West, Nirvana Gardens offers seamless 
+              connectivity to key business hubs through well-developed road and rail networks. 
+              Experience proximity to upscale amenities including fine dining, entertainment, 
+              shopping, healthcare, and reputed educational institutions.
+            </p>
+
+            {/* Features Grid */}
+            <div ref={featuresRef} className="space-y-4 mb-8">
+              {keyFeatures.map((feature, index) => (
+                <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-[#A38560]/40 hover:shadow-sm transition-all duration-300">
+                  <span className="text-4xl">{feature.icon}</span>
+                  <div>
+                    <h3 className="font-medium text-3xl text-gray-800 mb-1">{feature.title}</h3>
+                    <p className="text-xl text-gray-600">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Amenity Images */}
+            <div ref={imagesRef} className="grid grid-cols-3 gap-8 mb-8">
+              {amenityImages.map((image, index) => (
+                <div key={index} className="group cursor-pointer">
+                  <div className="relative overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <img
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-2 left-2 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {image.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          {/* <button className="bg-blue-600 text-white px-8 py-3 rounded-sm font-medium hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md">
+            Explore Location
+          </button> */}
+        </div>
       </div>
 
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative z-10 pt-20 pb-16 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          {/* <div className="inline-block mb-6">
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-600 to-green-600 text-white text-sm font-semibold rounded-full shadow-lg">
-              PRIME LOCATION
-            </span>
+      {/* Right Map Panel */}
+      <div className="w-2/3 relative flex items-center justify-center p-8">
+        <div ref={mapRef} className="relative w-full h-full max-w-4xl max-h-[90vh]">
+          {/* Map Image Only */}
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/connectivity-hAlUyiS1o3nmgpweb9otbK5btBY4GO.png"
+            alt="Kalyan Connectivity Map"
+            className="w-full h-full object-contain max-w-full max-h-[200vh] -mt-40"
+          />
+          {/* Map Overlay with Location Markers */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Key Location Markers */}
+            <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
+            <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '1s' }}></div>
+          </div>
+          {/* Map Legend */}
+          <div className="absolute bottom-4 left-6 bg-[#284139]/20 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+            <h3 className="text-xl font-medium text-gray-800 mb-2">Key Connections</h3>
+            <div className="space-y-1 text-md text-gray-600">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span>To Mumbai</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>To Thane</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>To Navi Mumbai</span>
+              </div>
+            </div>
+          </div>
+          {/* Floating Info Cards */}
+          <div className="absolute -top-60 -right-40 bg-[#284139]/20 rounded-lg shadow-lg p-4 border border-gray-100">
+            <div className="text-lg text-gray-900 mb-1">UPCOMING</div>
+            <div className="text-md font-medium text-gray-800">MTHL Project</div>
+          </div>
+          {/* <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3 border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">INFRASTRUCTURE</div>
+            <div className="text-sm font-medium text-gray-800">Ring Road</div>
           </div> */}
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#284139] via-[#809076] to-[#284139] bg-clip-text text-transparent mb-6 leading-tight">
-            A COSMOPOLITAN OF
-            <br />
-            <span className="text-6xl md:text-8xl">CONVENIENCE</span>
-          </h1>
-          <p className="text-2xl md:text-3xl text-gray-700 font-light mb-8 max-w-4xl mx-auto">
-            WITH EASE OF <span className="font-bold text-green-700">CONNECTIVITY</span>
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
         </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="relative z-10 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
-            <img
-              ref={mapRef}
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/connectivity-hAlUyiS1o3nmgpweb9otbK5btBY4GO.png"
-              alt="Kalyan Connectivity Map"
-              className="w-full h-auto rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-500"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section ref={contentRef} className="relative z-10 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/30">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Strategic Location Advantage</h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Kalyan's prime location offers seamless connectivity to key business hubs like 
-                  <span className="font-semibold text-blue-700"> Thane, Bhiwandi, and Navi Mumbai</span> through 
-                  well-developed road and rail networks.
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  <span className="font-semibold text-green-700">Nirvana Gardens</span>, situated on Gandhare Road in Kalyan West, 
-                  is a sought-after residential destination with proximity to upscale amenities.
-                </p>
-              </div>
-            </div>
-            
-            <div className="space-y-8">
-              <div className="bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl p-8 text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-6">Future Infrastructure</h3>
-                <p className="text-lg leading-relaxed mb-4">
-                  Upcoming projects like the <span className="font-bold">Mumbai Trans-Harbour Link (MTHL)</span> and 
-                  <span className="font-bold"> Kalyan Ring Road</span> will further boost connectivity.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Ongoing infrastructure developments make Kalyan an ideal choice for families and professionals.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section ref={featuresRef} className="relative z-10 py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-            Connectivity <span className="text-green-700">Highlights</span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      {/* <section className="relative z-10 py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-green-600 rounded-3xl p-12 text-white shadow-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Experience Unmatched Connectivity
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Discover why Nirvana Gardens is the perfect blend of convenience and luxury
-            </p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-              Explore More
-            </button>
-          </div>
-        </div>
-      </section> */}
+      </div>
     </div>
   );
 };
 
-export default ConnectivityPage;
+export default KalyanConnectivityShowcase;
