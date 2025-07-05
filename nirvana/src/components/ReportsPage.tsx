@@ -3,9 +3,10 @@
 import { FileText, Download, Leaf } from "lucide-react"
 import leaf from "../assets/leaf.webp"
 import leaf2 from "../assets/leaf2.jpg"
+// Removed gsap and ScrollTrigger imports
+// Removed useEffect
 
 export default function NirvanaLifespaces() {
-
   const handlePDFClick = (url: string, title: string) => {
     window.open(url, "_blank")
   }
@@ -43,6 +44,13 @@ export default function NirvanaLifespaces() {
         minHeight: '100vh',
       }}
     >
+      {/* Overlay leaf image */}
+      <img
+        src={leaf}
+        alt="Leaf Overlay"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        style={{ mixBlendMode: 'multiply', opacity: 0.7 }}
+      />
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
           {/* Left Content */}
