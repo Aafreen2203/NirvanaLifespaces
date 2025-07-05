@@ -3,10 +3,54 @@
 import { FileText, Download, Leaf } from "lucide-react"
 import leaf from "../assets/leaf.webp"
 import leaf2 from "../assets/leaf2.jpg"
-// Removed gsap and ScrollTrigger imports
-// Removed useEffect
+import { useEffect, useRef } from "react"
 
 export default function NirvanaLifespaces() {
+  const logoRef = useRef(null)
+  const heroRef = useRef(null)
+  const contentRef = useRef(null)
+  const pdfButtonsRef = useRef(null)
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'
+    script.onload = () => {
+      const { gsap } = window
+      gsap.from(logoRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.1
+      })
+      gsap.from(heroRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.3
+      })
+      gsap.from(contentRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.5
+      })
+      gsap.from(pdfButtonsRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.7
+      })
+    }
+    document.head.appendChild(script)
+    return () => {
+      document.head.removeChild(script)
+    }
+  }, [])
+
   const handlePDFClick = (url: string, title: string) => {
     window.open(url, "_blank")
   }
@@ -56,7 +100,7 @@ export default function NirvanaLifespaces() {
           {/* Left Content */}
           <div className="space-y-8">
             {/* Logo */}
-            <div className="mb-8">
+            <div ref={logoRef} className="mb-8">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nirvana-9TELzNpNVOFqxSmVuVt7Sv7fQXuueH.png"
                 alt="Nirvana Lifespaces Logo"
@@ -65,7 +109,7 @@ export default function NirvanaLifespaces() {
             </div>
 
             {/* Hero Content */}
-            <div className="space-y-6">
+            <div ref={heroRef} className="space-y-6">
               <div className="space-y-4">
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight">
                   A GATEWAY OF{" "}
@@ -79,7 +123,7 @@ export default function NirvanaLifespaces() {
                 </h2>
               </div>
 
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div ref={contentRef} className="space-y-4 text-gray-600 leading-relaxed">
                 <p className="text-lg">
                   Nirvana Lifespaces is envisioned by <strong className="text-gray-800">Mr. Mokshay Sadhwani</strong>,
                   with a commitment to contribute to nature and align the company ethos by adopting sustainable
@@ -102,7 +146,7 @@ export default function NirvanaLifespaces() {
             </div>
 
             {/* PDF Buttons */}
-            <div className="space-y-4">
+            <div ref={pdfButtonsRef} className="space-y-4">
               <h3 className="text-xl font-semibold text-gray-800 mb-6">Important Documents</h3>
               <div className="grid gap-4">
                 {pdfData.map((pdf, index) => (
