@@ -37,6 +37,12 @@ const Footer: React.FC = () => {
     // You can add logic here to trigger navbar navigation if needed
   };
 
+  // Open contact popup
+  const openContactPopup = () => {
+    // Dispatch custom event to open contact popup
+    window.dispatchEvent(new CustomEvent('openContactPopup'));
+  };
+
   return (
     <footer
       ref={footerRef}
@@ -51,11 +57,11 @@ const Footer: React.FC = () => {
           
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="text-3xl sm:text-4xl font-extrabold">
+            <div className="text-4xl sm:text-5xl font-extrabold">
               <span className="text-[#F8D794]">Nirvana</span>
               <span className="text-[#809076]"> Gardens</span>
             </div>
-            <p className="text-[#809076] text-base leading-relaxed">
+            <p className="text-[#809076] text-lg leading-relaxed">
               Experience luxury living at its finest. Nirvana Gardens offers premium residential spaces 
               designed for modern comfort and elegant lifestyle.
             </p>
@@ -77,45 +83,45 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-[#F8D794]">Quick Links</h3>
+            <h3 className="text-2xl font-bold text-[#F8D794]">Quick Links</h3>
             <ul className="space-y-2 text-[#809076]">
-              <li><button onClick={() => scrollToSection('home')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-base">Home</button></li>
-              <li><button onClick={() => scrollToNavbarSection('about')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-base">About Us</button></li>
-              <li><button onClick={() => scrollToSection('rooms')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-base">Rooms</button></li>
-              <li><button onClick={() => scrollToSection('amenities')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-base">Amenities</button></li>
-              <li><button onClick={() => scrollToNavbarSection('contact')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-base">Contact</button></li>
+              <li><button onClick={() => scrollToSection('home')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-lg">Home</button></li>
+              <li><button onClick={() => scrollToNavbarSection('about')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-lg">About Us</button></li>
+              <li><button onClick={() => scrollToSection('rooms')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-lg">Rooms</button></li>
+              <li><button onClick={() => scrollToSection('amenities')} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-lg">Amenities</button></li>
+              <li><button onClick={openContactPopup} className="hover:text-[#F8D794] transition-colors duration-300 text-left text-lg">Contact</button></li>
             </ul>
           </div>
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-[#F8D794]">Services</h3>
+            <h3 className="text-2xl font-bold text-[#F8D794]">Services</h3>
             <ul className="space-y-2 text-[#809076]">
-              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-base">Property Management</a></li>
-              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-base">Maintenance</a></li>
-              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-base">Security</a></li>
-              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-base">Concierge</a></li>
-              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-base">24/7 Support</a></li>
+              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-lg">Property Management</a></li>
+              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-lg">Maintenance</a></li>
+              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-lg">Security</a></li>
+              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-lg">Concierge</a></li>
+              <li><a href="#" className="hover:text-[#F8D794] transition-colors duration-300 text-lg">24/7 Support</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="space-y-4 lg:col-span-1">
-            <h3 className="text-xl font-bold text-[#F8D794]">Contact Info</h3>
+            <h3 className="text-2xl font-bold text-[#F8D794]">Contact Info</h3>
             <div className="space-y-3 text-[#809076]">
               <div className="flex items-start space-x-3">
                 <FaMapMarkerAlt className="text-[#F8D794] flex-shrink-0" size={16} />
-                <div className="text-base leading-relaxed flex-1 min-w-0">
-                  <span className="text-sm">Survey No. 33/1/F, Near Pawan Atharva, Next to Golden Wok Restaurant, Agarwal College Road, Kolivali, Khadakpada, Kalyan West, Maharashtra 421301</span>
+                <div className="text-lg leading-relaxed flex-1 min-w-0">
+                  <span className="text-base">Survey No. 33/1/F, Near Pawan Atharva, Next to Golden Wok Restaurant, Agarwal College Road, Kolivali, Khadakpada, Kalyan West, Maharashtra 421301</span>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <FaPhone className="text-[#F8D794] flex-shrink-0" size={16} />
-                <span className="text-base">8424979797</span>
+                <span className="text-lg">8424979797</span>
               </div>
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-[#F8D794] flex-shrink-0" size={16} />
-                <span className="text-base">sales@nirvanalifespaces.com</span>
+                <span className="text-lg">sales@nirvanalifespaces.com</span>
               </div>
             </div>
           </div>
@@ -126,10 +132,10 @@ const Footer: React.FC = () => {
       <div className="border-t border-[#809076]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-[#809076] text-base">
+            <div className="text-[#809076] text-lg">
               © 2024 Nirvana Gardens. All rights reserved.
             </div>
-            <div className="flex space-x-6 text-base text-[#809076]">
+            <div className="flex space-x-6 text-lg text-[#809076]">
               <a href="#" className="hover:text-[#F8D794] transition-colors duration-300">Privacy Policy</a>
               <a href="#" className="hover:text-[#F8D794] transition-colors duration-300">Terms of Service</a>
               <a href="#" className="hover:text-[#F8D794] transition-colors duration-300">Cookie Policy</a>

@@ -52,6 +52,19 @@ const Navbar: React.FC = () => {
     }
   }, []);
 
+  // Listen for contact popup events from footer
+  useEffect(() => {
+    const handleContactPopupEvent = () => {
+      setContactPopupOpen(true);
+    };
+
+    window.addEventListener('openContactPopup', handleContactPopupEvent);
+    
+    return () => {
+      window.removeEventListener('openContactPopup', handleContactPopupEvent);
+    };
+  }, []);
+
   const handleContactClick = () => {
     setContactPopupOpen(true);
     setMobileMenuOpen(false);
