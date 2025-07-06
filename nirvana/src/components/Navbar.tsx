@@ -1,11 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FaTimes } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [contactPopupOpen, setContactPopupOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    residencyType: '',
+    comments: ''
+  });
 
   // Show/hide on scroll
   useEffect(() => {
@@ -43,6 +52,26 @@ const Navbar: React.FC = () => {
     }
   }, []);
 
+  const handleContactClick = () => {
+    setContactPopupOpen(true);
+    setMobileMenuOpen(false);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    setContactPopupOpen(false);
+    setFormData({ name: '', email: '', phone: '', residencyType: '', comments: '' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <>
       <nav
@@ -55,9 +84,17 @@ const Navbar: React.FC = () => {
           willChange: "transform, opacity",
         }}
       >
-        <div className="text-2xl sm:text-4xl font-extrabold">
-          <span className="text-[#F8D794]">Nirvana</span>
-          <span className="text-[#809076]"> Gardens</span>
+        <div 
+          className="text-2xl sm:text-4xl font-extrabold cursor-pointer transition-all duration-300 hover:scale-105"
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }}
+        >
+          <span className="text-[#F8D794] hover:text-[#809076] transition-colors duration-300">Nirvana</span>
+          <span className="text-[#809076] hover:text-[#F8D794] transition-colors duration-300"> Gardens</span>
         </div>
 
         {/* Desktop Nav */}
@@ -65,7 +102,7 @@ const Navbar: React.FC = () => {
           <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">Home</li>
           <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">About</li>
           <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">Properties</li>
-          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">Contact</li>
+          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer" onClick={handleContactClick}>Contact Us</li>
         </ul>
 
         {/* Hamburger/Cross Icon */}
@@ -84,8 +121,128 @@ const Navbar: React.FC = () => {
             <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>Home</li>
             <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>About</li>
             <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>Properties</li>
-            <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>Contact</li>
+            <li className="hover:text-[#809076] cursor-pointer" onClick={handleContactClick}>Contact Us</li>
           </ul>
+        </div>
+      )}
+
+      {/* Contact Popup */}
+      {contactPopupOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#111A19] text-[#F8D794] rounded-lg shadow-2xl max-w-lg w-full p-8 relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setContactPopupOpen(false)}
+              className="absolute top-4 right-4 text-[#809076] hover:text-[#F8D794] transition-colors duration-300"
+            >
+              <FaTimes size={20} />
+            </button>
+
+            {/* Form Header */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-2">Enquire Now</h2>
+              <p className="text-[#809076] text-lg">You dream it, we'll walk you there.</p>
+            </div>
+
+            {/* Contact Form */}
+            <form onSubmit={handleFormSubmit} className="space-y-6">
+              {/* Row 1: Name and Residency Type */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-[#2a3a39] border border-[#809076]/30 rounded-lg text-[#F8D794] placeholder-[#809076] focus:outline-none focus:border-[#F8D794] transition-colors duration-300"
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="residencyType" className="block text-sm font-medium mb-2">
+                    Residency Type
+                  </label>
+                  <select
+                    id="residencyType"
+                    name="residencyType"
+                    value={formData.residencyType}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-[#2a3a39] border border-[#809076]/30 rounded-lg text-[#F8D794] focus:outline-none focus:border-[#F8D794] transition-colors duration-300"
+                  >
+                    <option value="" className="text-[#809076]">Select BHK type</option>
+                    <option value="1 BHK" className="text-[#F8D794]">1 BHK</option>
+                    <option value="2 BHK" className="text-[#F8D794]">2 BHK</option>
+                    <option value="3 BHK" className="text-[#F8D794]">3 BHK</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Row 2: Phone Number and Email */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-[#2a3a39] border border-[#809076]/30 rounded-lg text-[#F8D794] placeholder-[#809076] focus:outline-none focus:border-[#F8D794] transition-colors duration-300"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email ID
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-[#2a3a39] border border-[#809076]/30 rounded-lg text-[#F8D794] placeholder-[#809076] focus:outline-none focus:border-[#F8D794] transition-colors duration-300"
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
+
+              {/* Row 3: Message */}
+              <div>
+                <label htmlFor="comments" className="block text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="comments"
+                  name="comments"
+                  value={formData.comments}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full px-4 py-3 bg-[#2a3a39] border border-[#809076]/30 rounded-lg text-[#F8D794] placeholder-[#809076] focus:outline-none focus:border-[#F8D794] transition-colors duration-300 resize-none"
+                  placeholder="Enter your message (optional)"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#F8D794] text-[#111A19] py-3 px-6 rounded-lg font-semibold hover:bg-[#809076] transition-colors duration-300"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       )}
     </>

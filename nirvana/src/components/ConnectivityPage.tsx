@@ -122,7 +122,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       facilities: [
         "Big Bazaar", "Reliance Fresh", "D-Mart", "More Supermarket",
         "Spencer's", "Kalyan Shopping Complex", "City Center Mall",
-        "Khadakpada Market", "Local Shopping Streets"
+        "Khadakpada Market"
       ]
     },
     healthcare: {
@@ -132,7 +132,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       facilities: [
         "Jupiter Hospital", "Criticare Hospital", "Kalyan Hospital",
         "Shree Hospital", "Apex Hospital", "Noble Hospital",
-        "Primary Health Centers", "Specialty Clinics", "Diagnostic Centers"
+        "Primary Health Centers", "Specialty Clinics"
       ]
     },
     education: {
@@ -162,7 +162,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       facilities: [
         "State Bank of India", "HDFC Bank", "ICICI Bank",
         "Axis Bank", "Bank of Maharashtra", "Union Bank",
-        "ATM Networks", "Cooperative Banks", "Financial Services"
+        "ATM Networks", "Cooperative Banks"
       ]
     },
     hospitality: {
@@ -192,7 +192,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       facilities: [
         "Lakme Salon", "VLCC", "Naturals", "Jawed Habib",
         "Spa Centers", "Beauty Parlors", "Wellness Centers",
-        "Massage Therapy", "Grooming Services"
+        "Massage Therapy"
       ]
     }
   };
