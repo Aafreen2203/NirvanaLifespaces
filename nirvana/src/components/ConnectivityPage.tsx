@@ -92,17 +92,17 @@ const KalyanConnectivityShowcase: React.FC = () => {
 
   const keyFeatures = [
     {
-      icon: "🚗",
+      // icon: "🚗",
       title: "Strategic Road Networks",
       description: "Direct connectivity to Thane, Bhiwandi, and Navi Mumbai"
     },
     {
-      icon: "🚊",
+      // icon: "🚊",
       title: "Railway Excellence",
       description: "Seamless access to Kalyan Railway Station"
     },
     {
-      icon: "🏗️",
+      // icon: "🏗️",
       title: "Future Infrastructure",
       description: "MTHL and Ring Road projects enhancing connectivity"
     }
@@ -116,7 +116,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
 
   const nearbyFacilities = {
     shopping: {
-      icon: "🛍️",
+      // icon: "SH",
       title: "Shopping Centers",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -126,7 +126,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     healthcare: {
-      icon: "🏥",
+      // icon: "HC",
       title: "Healthcare",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -136,7 +136,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     education: {
-      icon: "🎓",
+      // icon: "ED",
       title: "Educational Institutes",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -146,7 +146,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     entertainment: {
-      icon: "🎬",
+      // icon: "EN",
       title: "Entertainment",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -156,7 +156,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     banking: {
-      icon: "🏦",
+      // icon: "BN",
       title: "ATM/Banks",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -166,7 +166,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     hospitality: {
-      icon: "🏨",
+      // icon: "HP",
       title: "Hospitality",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -176,7 +176,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     recreation: {
-      icon: "⚽",
+      // icon: "RC",
       title: "Recreation",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -186,7 +186,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
       ]
     },
     wellness: {
-      icon: "💆",
+      // icon: "WL",
       title: "Salons/Spa",
       color: "from-[#B86830] to-[#B86830]",
       facilities: [
@@ -229,7 +229,7 @@ const KalyanConnectivityShowcase: React.FC = () => {
             {/* Key Feature Section */}
             <div className="mb-8">
               <div className="flex items-center mb-4">
-                <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                {/* <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div> */}
                 <h2 className="text-4xl font-medium text-[#390517]">NIRVANA GARDENS</h2>
               </div>
               <p className="text-gray-600 text-2xl leading-relaxed mb-6">
@@ -240,13 +240,15 @@ const KalyanConnectivityShowcase: React.FC = () => {
               </p>
 
               {/* Features Grid */}
-              <div ref={featuresRef} className="space-y-4 mb-8">
+              <div ref={featuresRef} className="space-y-6 mb-8">
                 {keyFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-[#A38560]/40 hover:shadow-sm transition-all duration-300">
-                    <span className="text-4xl">{feature.icon}</span>
-                    <div>
-                      <h3 className="font-medium text-3xl text-gray-800 mb-1">{feature.title}</h3>
-                      <p className="text-xl text-gray-600">{feature.description}</p>
+                  <div key={index} className="flex items-start space-x-4">
+                    {/* <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#284139] to-[#2a4540] rounded-full flex items-center justify-center shadow-md">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div> */}
+                    <div className="flex-1 border-l-4 border-[#284139]/30 pl-6 rounded-2xl">
+                      <h3 className="font-semibold text-2xl text-[#284139] mb-2 leading-tight">{feature.title}</h3>
+                      <p className="text-lg text-gray-700 leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
                 ))}
@@ -343,10 +345,12 @@ const KalyanConnectivityShowcase: React.FC = () => {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-full border-2 border-[#B86830] transition-all duration-300
+                  className={`flex items-center space-x-3 px-6 py-3 rounded-full border-2 border-[#B86830] transition-all duration-300
                      ${isActive ? 'bg-[#B86830] text-[#F8D794] shadow-lg scale-105' : 'bg-white/30 text-[#B86830] hover:bg-[#284139] hover:text-[#F8D794] shadow-md hover:shadow-lg'}`}
                 >
-                  <span className="text-3xl">{facility.icon}</span>
+                  {/* <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
+                    {facility.icon}
+                  </div> */}
                   <span className="font-medium text-xl">{facility.title}</span>
                 </button>
               );
@@ -356,9 +360,9 @@ const KalyanConnectivityShowcase: React.FC = () => {
           {/* Active Category Display */}
           <div className="bg-white/50 rounded-2xl shadow-xl p-8 border border-gray-100">
             <div className="flex items-center mb-6">
-              <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].color} flex items-center justify-center text-2xl text-white mr-4`}>
+              {/* <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].color} flex items-center justify-center text-lg font-bold text-white mr-4`}>
                 {nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].icon}
-              </div>
+              </div> */}
               <div>
                 <h3 className="text-3xl font-semibold text-[#390517]">
                   {nearbyFacilities[activeCategory as keyof typeof nearbyFacilities].title}

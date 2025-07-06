@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import carrom from "../assets/carrom.jpg"
+import chess from "../assets/chess.jpg"
+import court from "../assets/court.jpg"
+import gym from "../assets/gym.png"
+import jogtrack from "../assets/jogtrack.jpg"
+import kidsplayarea from "../assets/kidsplayarea.jpg"
+import poolTable from "../assets/poolTable.jpg"
+import seating from "../assets/seating.jpg"
+import spa from "../assets/spa.png"
+import tt from "../assets/tt.jpg"
 
 const amenities = [
-  { img: '/src/assets/gym.png', name: 'Gymnasium', description: 'State-of-the-art fitness center with modern equipment' },
-  { img: '/src/assets/spa.png', name: 'SPA', description: 'Relaxing spa facilities for ultimate wellness' },
-  { img: '/src/assets/pool-table.png', name: 'Pool Table', description: 'Professional pool table for entertainment' },
-  { img: '/src/assets/table-tennis.png', name: 'Table Tennis', description: 'Indoor table tennis for active recreation' },
-  { img: '/src/assets/chess.png', name: 'Chess', description: 'Strategic board games for mental stimulation' },
-  { img: '/src/assets/carrom.png', name: 'Carrom', description: 'Traditional carrom board for family fun' },
-  { img: '/src/assets/kids-play.png', name: 'Kids Play Area', description: 'Safe and engaging play zone for children' },
-  { img: '/src/assets/jogging.png', name: 'Jogging Track', description: 'Dedicated jogging track for fitness enthusiasts' },
-  { img: '/src/assets/court.png', name: 'Multi-Purpose Court', description: 'Versatile sports court for various activities' },
-  { img: '/src/assets/pool.png', name: 'Main Pool', description: 'Luxurious swimming pool for relaxation' },
+  // { img: gym, name: 'Gymnasium', description: 'State-of-the-art fitness center with modern equipment' },
+  // { img: spa, name: 'SPA', description: 'Relaxing spa facilities for ultimate wellness' },
+  { img: poolTable, name: 'Pool Table', description: 'Professional pool table for entertainment' },
+  { img: tt, name: 'Table Tennis', description: 'Indoor table tennis for active recreation' },
+  { img: chess, name: 'Chess', description: 'Strategic board games for mental stimulation' },
+  { img: carrom, name: 'Carrom', description: 'Traditional carrom board for family fun' },
+  { img: kidsplayarea, name: 'Kids Play Area', description: 'Safe and engaging play zone for children' },
+  { img: jogtrack, name: 'Jogging Track', description: 'Dedicated jogging track for fitness enthusiasts' },
+  { img: court, name: 'Multi-Purpose Court', description: 'Versatile sports court for various activities' },
+  { img: seating, name: 'Main Pool', description: 'Luxurious swimming pool for relaxation' },
 ];
 
 const Amenities = () => {
@@ -47,39 +57,33 @@ const Amenities = () => {
         </div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {amenities.map((amenity, idx) => (
             <div
               key={idx}
-              className={`relative h-64 rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 bg-white shadow-lg ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              className={`relative h-64 rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               onMouseEnter={() => handleMouseEnter(idx)}
               onMouseLeave={handleMouseLeave}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
               {/* Background Image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#111A19] to-[#2a3a39] opacity-90"></div>
+              <img
+                src={amenity.img}
+                alt={amenity.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 shadow-2xl"
+                onError={(e) => {
+                  e.currentTarget.src = "https://via.placeholder.com/800x600/cccccc/666666?text=Image+Not+Found"
+                }}
+              />
               
-              {/* Icon */}
-              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                <img
-                  src={amenity.img}
-                  alt={amenity.name}
-                  className="w-10 h-10 object-contain"
-                />
+              {/* Overlay */}
+              <div className={`absolute inset-0 bg-[#284139]/30 transition-all duration-300 ${hoveredIndex === idx ? 'bg-opacity-20' : 'bg-opacity-0'}`} />
+              
+              {/* Text Content */}
+              <div className={`absolute inset-0 flex flex-col justify-center items-center text-white p-4 text-center transition-all duration-400 ${hoveredIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <h3 className="text-lg font-bold mb-2 tracking-wide">{amenity.name}</h3>
+                <p className="text-xs opacity-90 leading-relaxed">{amenity.description}</p>
               </div>
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4 pt-16">
-                <h3 className="text-lg font-bold text-[#F8D794] mb-2 tracking-wide">
-                  {amenity.name}
-                </h3>
-                <p className="text-xs text-gray-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {amenity.description}
-                </p>
-              </div>
-
-              {/* Hover Overlay */}
-              <div className={`absolute inset-0 bg-[#284139]/20 transition-all duration-300 ${hoveredIndex === idx ? 'bg-opacity-40' : 'bg-opacity-0'}`} />
             </div>
           ))}
         </div>
