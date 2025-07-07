@@ -48,10 +48,11 @@ const Amenities = () => {
     <div className="min-h-[120vh] bg-[#F8D794]/30 py-16 px-8" style={{ fontFamily: "'Merriweather', serif" }}>
       <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         {/* Header Section */}
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#284139] mb-6">PREMIUM AMENITIES</h1>
-          <p className="text-gray-600 text-lg max-w-2xl leading-relaxed">
-            Experience luxury living with our world-class amenities designed to enhance your lifestyle. 
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#284139] mb-4 leading-tight mx-auto">PREMIUM AMENITIES</h1>
+          <p className="text-lg md:text-xl text-[#284139]/80 mx-auto leading-relaxed text-center">
+            Experience luxury living with our world-class amenities<br />
+            designed to enhance your lifestyle.<br />
             From fitness to recreation, we provide everything you need for a comfortable and fulfilling life.
           </p>
         </div>
@@ -81,8 +82,7 @@ const Amenities = () => {
               
               {/* Text Content */}
               <div className={`absolute inset-0 flex flex-col justify-center items-center text-white p-4 text-center transition-all duration-400 ${hoveredIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <h3 className="text-lg font-bold mb-2 tracking-wide">{amenity.name}</h3>
-                <p className="text-xs opacity-90 leading-relaxed">{amenity.description}</p>
+                <h3 className="text-2xl font-bold mb-2 tracking-wide">{amenity.name}</h3>
               </div>
             </div>
           ))}

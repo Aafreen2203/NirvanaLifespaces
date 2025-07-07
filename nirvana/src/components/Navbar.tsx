@@ -2,12 +2,16 @@ import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
+import { submitEnquiryForm } from "../services/formService";
+import type { FormData } from "../services/formService";
 
 const Navbar: React.FC = () => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactPopupOpen, setContactPopupOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,12 +74,29 @@ const Navbar: React.FC = () => {
     setMobileMenuOpen(false);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    setContactPopupOpen(false);
-    setFormData({ name: '', email: '', phone: '', residencyType: '', comments: '' });
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await submitEnquiryForm(formData);
+      
+      if (response.success) {
+        setSubmitMessage('Thank you! Your enquiry has been submitted successfully.');
+        setFormData({ name: '', email: '', phone: '', residencyType: '', comments: '' });
+        setTimeout(() => {
+          setContactPopupOpen(false);
+          setSubmitMessage('');
+        }, 2000);
+      } else {
+        setSubmitMessage(response.message || 'Failed to submit enquiry. Please try again.');
+      }
+    } catch (error) {
+      setSubmitMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -248,11 +269,27 @@ const Navbar: React.FC = () => {
                 />
               </div>
 
+              {/* Submit Message */}
+              {submitMessage && (
+                <div className={`text-center p-3 rounded-lg ${
+                  submitMessage.includes('Thank you') 
+                    ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                    : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-[#F8D794] text-[#111A19] py-3 px-6 rounded-lg font-semibold hover:bg-[#809076] transition-colors duration-300"
+                disabled={isSubmitting}
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 ${
+                  isSubmitting 
+                    ? 'bg-[#809076] text-[#111A19] cursor-not-allowed' 
+                    : 'bg-[#F8D794] text-[#111A19] hover:bg-[#809076]'
+                }`}
               >
-                Submit
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             </form>
           </div>

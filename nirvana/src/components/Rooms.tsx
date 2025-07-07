@@ -70,11 +70,11 @@ export default function ImageGallery() {
     <div className="min-h-[120vh] bg-[#F8D794]/30 py-16 px-8" style={{ fontFamily: "'Merriweather', serif" }}>
       <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         {/* Header Section */}
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-[#284139] mb-6">OUR PROJECT</h1>
-          <p className="text-gray-600 text-lg max-w-2xl leading-relaxed">
-            Discover our portfolio of exceptional architectural designs and interior spaces. Each project represents our
-            commitment to innovation, sustainability, and timeless elegance.
+          <p className="text-gray-600 text-lg leading-relaxed text-center mx-auto">
+            Discover our portfolio of exceptional architectural designs and interior spaces.<br />
+            Each project represents our commitment to innovation, sustainability, and timeless elegance.
           </p>
         </div>
 

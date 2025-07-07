@@ -44,13 +44,18 @@ const App: React.FC = () => {
           A serene blend of luxury and nature, this premium residential enclave is crafted by <a href="https://www.tharwaniinfrastructures.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-[#B86830] underline hover:text-[#F8D794] transition-colors">Tharwani Infrastructures</a>, a name trusted for innovative design and quality living spaces. Experience elevated living with world-class amenities in the heart of the city.
         </p>
         <div ref={buttonsRef} className="mt-6 sm:mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 relative w-full max-w-xs sm:max-w-none">
-          <button className="bg-[#B86830] hover:bg-[#284139] text-[#F8D794] px-6 sm:px-8 py-3 rounded shadow-lg transition text-lg sm:text-xl font-bold border-2 border-[#B86830] w-full sm:w-auto">
-            Explore Properties
+          <button
+            className="bg-[#B86830] hover:bg-[#284139] text-[#F8D794] px-6 sm:px-8 py-3 rounded shadow-lg transition text-lg sm:text-xl font-bold border-2 border-[#B86830] w-full sm:w-auto"
+            onClick={() => window.open('/brochure.html', '_blank')}
+          >
+            Brochure
           </button>
           <div className="relative w-full sm:w-auto">
             {/* Animated Line - Above Schedule Visit Button */}
             <div className="absolute -top-6 sm:-top-[-8] left-1/2 -translate-x-1/2 w-32 sm:w-44 h-0.5 bg-gradient-to-r from-[#F8D794] to-transparent animate-pulse" />
-            <button className="border-2 border-[#F8D794] px-6 sm:px-8 py-3 text-[#F8D794] hover:bg-[#F8D794] hover:text-[#284139] rounded transition text-lg sm:text-xl font-bold bg-transparent w-full sm:w-auto">
+            <button className="border-2 border-[#F8D794] px-6 sm:px-8 py-3 text-[#F8D794] hover:bg-[#F8D794] hover:text-[#284139] rounded transition text-lg sm:text-xl font-bold bg-transparent w-full sm:w-auto"
+              onClick={() => window.dispatchEvent(new CustomEvent('openContactPopup'))}
+            >
               Schedule Visit
             </button>
           </div>
