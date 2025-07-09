@@ -3,7 +3,7 @@
 import { FileText, Download, Leaf } from "lucide-react"
 import leaf from "../assets/leaf.webp"
 import leaf2 from "../assets/leaf2.jpg"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 export default function NirvanaLifespaces() {
   const logoRef = useRef(null)
@@ -11,45 +11,7 @@ export default function NirvanaLifespaces() {
   const contentRef = useRef(null)
   const pdfButtonsRef = useRef(null)
 
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'
-    script.onload = () => {
-      const { gsap } = window
-      gsap.from(logoRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.1
-      })
-      gsap.from(heroRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.3
-      })
-      gsap.from(contentRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.5
-      })
-      gsap.from(pdfButtonsRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.7
-      })
-    }
-    document.head.appendChild(script)
-    return () => {
-      document.head.removeChild(script)
-    }
-  }, [])
+  // GSAP animation useEffect removed
 
   const handlePDFClick = (url: string, title: string) => {
     window.open(url, "_blank")

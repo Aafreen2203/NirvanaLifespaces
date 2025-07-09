@@ -6,6 +6,7 @@ import Rooms from "./components/Rooms"
 import ConnectivityPage from './components/ConnectivityPage';
 import ReportsPage from "./components/ReportsPage"
 import Footer from './components/Footer';
+import ChatBot from './components/Chatbot';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <ConnectivityPage />
       <ReportsPage />
       <Footer />
+      <ChatBot />
     </>
   );
 }

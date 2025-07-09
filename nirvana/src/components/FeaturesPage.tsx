@@ -5,7 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Shield, Flame, Trash2, MoveUpRight, KeyRound, PhoneCall } from "lucide-react"
 import leaf from "../assets/leaf.webp"
-import bgImage from "../assets/bg image.avif"
+import leaf2 from "../assets/leaf2.jpg"
 import livingroom from "../assets/building.jpg"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -37,10 +37,12 @@ const FeaturesPage: React.FC = () => {
     <div
       className="min-h-screen relative overflow-hidden"
       style={{
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `url(${leaf2})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        minHeight: '100vh',
         fontFamily: "'Merriweather', serif"
       }}
     >
@@ -49,7 +51,7 @@ const FeaturesPage: React.FC = () => {
         src={leaf}
         alt="Leaf Overlay"
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        style={{ mixBlendMode: 'multiply', opacity: 0.5 }}
+        style={{ mixBlendMode: 'multiply', opacity: 0.7 }}
       />
       <div className="container mx-auto px-4 py-16 relative z-10 flex flex-col items-center">
         {/* Intro Section */}
@@ -62,7 +64,7 @@ const FeaturesPage: React.FC = () => {
           </p>
         </div>
         {/* Image + Content Card */}
-        <div className="w-full max-w-5xl bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden">
+        <div className="w-full max-w-5xl bg-white/30 backdrop-blur-xl rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden border border-white/20">
           {/* Left: Image fills gray box */}
           <div className="md:w-1/2 w-full h-[350px] md:h-auto bg-[#e9ede7] flex items-stretch justify-center">
             <img
@@ -74,36 +76,36 @@ const FeaturesPage: React.FC = () => {
           </div>
           {/* Right: Features */}
           <div className="md:w-1/2 w-full flex flex-col justify-center p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-[#284139] mb-8">Key Features</h2>
-            <ul ref={featuresRef} className="space-y-6 mb-10">
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><Shield size={32} /></span>
-                Earthquake-resistant RCC structure
-              </li>
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><Flame size={32} /></span>
-                Integrated fire protection systems
-              </li>
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><Trash2 size={32} /></span>
-                Garbage disposal system
-              </li>
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><MoveUpRight size={32} /></span>
-                High-speed passenger lifts & stretcher lift
-              </li>
-            </ul>
-            <h2 className="text-2xl font-bold text-[#284139] mb-6">3-Tier Security Features</h2>
-            <ul ref={securityRef} className="space-y-6">
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><KeyRound size={32} /></span>
-                Godrej video door phone
-              </li>
-              <li className="flex items-center text-xl text-[#284139] font-medium">
-                <span className="mr-4 text-green-700"><PhoneCall size={32} /></span>
-                Intercom connection to clubhouse, security, parking, and other apartments
-              </li>
-            </ul>
+            <h2 className="text-3xl font-bold text-[#284139]/80 mb-8 drop-shadow-lg">Key Features</h2>
+                          <ul ref={featuresRef} className="space-y-6 mb-10">
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><Shield size={32} /></span>
+                  Earthquake-resistant RCC structure
+                </li>
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><Flame size={32} /></span>
+                  Integrated fire protection systems
+                </li>
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><Trash2 size={32} /></span>
+                  Garbage disposal system
+                </li>
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><MoveUpRight size={32} /></span>
+                  High-speed passenger lifts & stretcher lift
+                </li>
+              </ul>
+              <h2 className="text-2xl font-bold text-[#284139]/80 mb-6 drop-shadow-lg">3-Tier Security Features</h2>
+              <ul ref={securityRef} className="space-y-6">
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><KeyRound size={32} /></span>
+                  Godrej video door phone
+                </li>
+                <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
+                  <span className="mr-4 text-[#284139]/80"><PhoneCall size={32} /></span>
+                  Intercom connection to clubhouse, security, parking, and other apartments
+                </li>
+              </ul>
           </div>
         </div>
       </div>
