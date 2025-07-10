@@ -1,17 +1,98 @@
 "use client"
-
 import { FileText, Download, Leaf } from "lucide-react"
+import { useRef, useEffect } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import leaf from "../assets/leaf.webp"
 import leaf2 from "../assets/leaf2.jpg"
-import { useRef } from "react"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function NirvanaLifespaces() {
-  const logoRef = useRef(null)
-  const heroRef = useRef(null)
-  const contentRef = useRef(null)
-  const pdfButtonsRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const pdfButtonsRef = useRef<HTMLDivElement>(null)
 
-  // GSAP animation useEffect removed
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Logo animation on scroll
+      gsap.fromTo(
+        logoRef.current,
+        { opacity: 0, y: -30, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: logoRef.current,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      )
+
+      // Hero content animation on scroll
+      gsap.fromTo(
+        heroRef.current?.children || [],
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      )
+
+      // Content paragraphs animation on scroll
+      gsap.fromTo(
+        contentRef.current?.children || [],
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      )
+
+      // PDF buttons animation on scroll
+      gsap.fromTo(
+        pdfButtonsRef.current?.children || [],
+        { opacity: 0, y: 30, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: pdfButtonsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      )
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [])
 
   const handlePDFClick = (url: string, title: string) => {
     window.open(url, "_blank")
@@ -40,22 +121,23 @@ export default function NirvanaLifespaces() {
 
   return (
     <div
+      ref={containerRef}
       className="min-h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${leaf2})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100vw',
-        minHeight: '100vh',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        width: "100vw",
+        minHeight: "100vh",
       }}
     >
       {/* Overlay leaf image */}
       <img
-        src={leaf}
+        src={leaf || "/placeholder.svg"}
         alt="Leaf Overlay"
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        style={{ mixBlendMode: 'multiply', opacity: 0.7 }}
+        style={{ mixBlendMode: "multiply", opacity: 0.7 }}
       />
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
@@ -69,7 +151,6 @@ export default function NirvanaLifespaces() {
                 className="h-16 w-auto filter brightness-0 opacity-80"
               />
             </div>
-
             {/* Hero Content */}
             <div ref={heroRef} className="space-y-6">
               <div className="space-y-4">
@@ -84,7 +165,6 @@ export default function NirvanaLifespaces() {
                   LIFESTYLE WITH RESPONSIBLE DEVELOPMENT
                 </h2>
               </div>
-
               <div ref={contentRef} className="space-y-4 text-gray-600 leading-relaxed">
                 <p className="text-lg">
                   Nirvana Lifespaces is envisioned by <strong className="text-gray-800">Mr. Mokshay Sadhwani</strong>,
@@ -92,21 +172,18 @@ export default function NirvanaLifespaces() {
                   construction practices and the integration of energy-efficient technologies to deliver sustainable
                   homes.
                 </p>
-
                 <p className="text-lg">
                   Nirvana Lifespaces emphasizes developing green spaces, state-of-the-art landscaping, meticulously
                   planned urban parks, and themed gardens in all their upcoming projects. Prioritizing the health and
                   happiness of homeowners of Nirvana Lifespaces, the focus is to ensure environmental preservation and
                   enhance the well-being of all.
                 </p>
-
                 <p className="text-lg">
                   With a harmonious integration of nature, fresh air, and accommodating more plantations, Nirvana
                   Lifespaces not only enriches lives but also promises a sustainable and equitable world.
                 </p>
               </div>
             </div>
-
             {/* PDF Buttons */}
             <div ref={pdfButtonsRef} className="space-y-4">
               <h3 className="text-xl font-semibold text-gray-800 mb-6">Important Documents</h3>
@@ -138,7 +215,6 @@ export default function NirvanaLifespaces() {
               </div>
             </div>
           </div>
-
           {/* Right Content - Plant Image */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative">
