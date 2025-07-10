@@ -21,8 +21,12 @@ function App() {
       <div id="amenities">
         <Amenities />
       </div>
-      <FeaturesPage />
-      <FloorPlan />
+      <div id="features">
+        <FeaturesPage />
+      </div>
+      <div id="floorplan">
+        <FloorPlan />
+      </div>
       <ConnectivityPage />
       <ReportsPage />
       <Footer />

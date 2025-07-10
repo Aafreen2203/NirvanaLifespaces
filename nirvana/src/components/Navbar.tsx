@@ -4,6 +4,7 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { submitEnquiryForm } from "../services/formService";
 import type { FormData } from "../services/formService";
+import logo from '../assets/logo.png';
 
 const Navbar: React.FC = () => {
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -118,30 +119,22 @@ const Navbar: React.FC = () => {
           willChange: "transform, opacity",
         }}
       >
-        <div 
-          className="text-2xl sm:text-4xl font-extrabold cursor-pointer transition-all duration-300 hover:scale-105"
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-          }}
-        >
-          <span className="text-[#F8D794] hover:text-[#809076] transition-colors duration-300">Nirvana</span>
-          <span className="text-[#809076] hover:text-[#F8D794] transition-colors duration-300"> Gardens</span>
+        {/* Logo (left) */}
+        <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <img src={logo} alt="Nirvana Gardens Logo" className="h-10 w-auto mr-3" style={{maxHeight:'40px'}} />
         </div>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex space-x-10 text-lg font-semibold">
-          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">Home</li>
-          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">About</li>
-          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer">Properties</li>
+        {/* Navbar Links (right) */}
+        <ul className="hidden md:flex space-x-10 text-lg font-semibold ml-auto">
+          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer" onClick={() => document.getElementById('rooms')?.scrollIntoView({behavior:'smooth'})}>Project</li>
+          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({behavior:'smooth'})}>Features</li>
+          <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer" onClick={() => document.getElementById('floorplan')?.scrollIntoView({behavior:'smooth'})}>Floor Plan</li>
           <li className="hover:text-[#809076] transition-colors duration-300 cursor-pointer" onClick={handleContactClick}>Contact Us</li>
         </ul>
 
         {/* Hamburger/Cross Icon */}
         <button
-          className="md:hidden text-3xl text-[#F8D794] focus:outline-none"
+          className="md:hidden text-3xl text-[#F8D794] focus:outline-none ml-auto"
           onClick={() => setMobileMenuOpen((open) => !open)}
         >
           {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
@@ -152,10 +145,10 @@ const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#111A19]/90 backdrop-blur-sm flex flex-col items-center justify-center text-[#F8D794] font-serif">
           <ul className="space-y-8 text-2xl font-semibold">
-            <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>Home</li>
-            <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>About</li>
-            <li className="hover:text-[#809076] cursor-pointer" onClick={() => setMobileMenuOpen(false)}>Properties</li>
-            <li className="hover:text-[#809076] cursor-pointer" onClick={handleContactClick}>Contact Us</li>
+            <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); document.getElementById('rooms')?.scrollIntoView({behavior:'smooth'}); }}>Project</li>
+            <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); document.getElementById('features')?.scrollIntoView({behavior:'smooth'}); }}>Features</li>
+            <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); document.getElementById('floorplan')?.scrollIntoView({behavior:'smooth'}); }}>Floor Plan</li>
+            <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); handleContactClick(); }}>Contact Us</li>
           </ul>
         </div>
       )}

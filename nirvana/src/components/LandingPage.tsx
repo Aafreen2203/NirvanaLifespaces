@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Navbar from "./Navbar";
 import b5 from "../assets/b5.png";
+import logo from "../assets/logo.png"
 import gsap from "gsap";
 
 const App: React.FC = () => {

@@ -231,7 +231,7 @@ export default function FloorPlan() {
               Podium Floor Plan
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#284139] to-transparent mx-auto rounded-full"></div>
+          <div className="w-120 h-1 bg-gradient-to-r from-[#284139] to-transparent mx-auto rounded-full"></div>
         </div>
 
         {/* Main Floor Plan */}

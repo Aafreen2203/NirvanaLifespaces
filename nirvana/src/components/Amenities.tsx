@@ -45,12 +45,12 @@ const Amenities = () => {
   };
 
   return (
-    <div className="min-h-[120vh] bg-[#F8D794]/30 py-16 px-8" style={{ fontFamily: "'Merriweather', serif" }}>
+    <div className="min-h-[80vh] bg-[#284139]/80 py-10 px-4 md:py-16 md:px-8" style={{ fontFamily: "'Merriweather', serif" }}>
       <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#284139] mb-4 leading-tight mx-auto">PREMIUM AMENITIES</h1>
-          <p className="text-lg md:text-xl text-[#284139]/80 mx-auto leading-relaxed text-center">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#F8D794] mb-3 md:mb-4 leading-tight mx-auto">PREMIUM AMENITIES</h1>
+          <p className="text-base sm:text-lg md:text-xl text-[#F8D794] mx-auto leading-relaxed text-center">
             Experience luxury living with our world-class amenities<br />
             designed to enhance your lifestyle.<br />
             From fitness to recreation, we provide everything you need for a comfortable and fulfilling life.
@@ -58,11 +58,11 @@ const Amenities = () => {
         </div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
           {amenities.map((amenity, idx) => (
             <div
               key={idx}
-              className={`relative h-64 rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              className={`relative h-40 md:h-64 rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               onMouseEnter={() => handleMouseEnter(idx)}
               onMouseLeave={handleMouseLeave}
               style={{ transitionDelay: `${idx * 100}ms` }}
@@ -76,13 +76,13 @@ const Amenities = () => {
                   e.currentTarget.src = "https://via.placeholder.com/800x600/cccccc/666666?text=Image+Not+Found"
                 }}
               />
-              
-              {/* Overlay */}
-              <div className={`absolute inset-0 bg-[#284139]/30 transition-all duration-300 ${hoveredIndex === idx ? 'bg-opacity-20' : 'bg-opacity-0'}`} />
-              
+              {/* Overlay - only on hover */}
+              {hoveredIndex === idx && (
+                <div className="absolute inset-0 bg-[#F8D794]/40 transition-all duration-300" />
+              )}
               {/* Text Content */}
-              <div className={`absolute inset-0 flex flex-col justify-center items-center text-white p-4 text-center transition-all duration-400 ${hoveredIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <h3 className="text-2xl font-bold mb-2 tracking-wide">{amenity.name}</h3>
+              <div className={`absolute inset-0 flex flex-col justify-center items-center text-[#284139] p-2 sm:p-4 text-center transition-all duration-400 ${hoveredIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <h3 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2 tracking-wide">{amenity.name}</h3>
               </div>
             </div>
           ))}
