@@ -3,7 +3,7 @@ import type React from "react"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Shield, Flame, Trash2, MoveUpRight, KeyRound, PhoneCall } from "lucide-react"
+import { Shield, Flame, Trash2, MoveUpRight, KeyRound, PhoneCall, Star, Award, CheckCircle } from "lucide-react"
 import leaf from "../assets/leaf.webp"
 import leaf2 from "../assets/leaf2.jpg"
 import livingroom from "../assets/building.jpg"
@@ -17,6 +17,7 @@ const FeaturesPage: React.FC = () => {
   const imageRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLUListElement>(null)
   const securityRef = useRef<HTMLUListElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,6 +33,25 @@ const FeaturesPage: React.FC = () => {
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      )
+
+      // Stats animation
+      gsap.fromTo(
+        statsRef.current?.children || [],
+        { opacity: 0, y: 30, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         },
@@ -113,19 +133,24 @@ const FeaturesPage: React.FC = () => {
     return () => ctx.revert()
   }, [])
 
+  const stats = [
+    { icon: <Award className="w-8 h-8" />, number: "100+", label: "Premium Features" },
+    { icon: <Shield className="w-8 h-8" />, number: "24/7", label: "Security System" },
+    { icon: <Star className="w-8 h-8" />, number: "5★", label: "Luxury Rating" },
+  ]
+
   return (
     <div
       ref={containerRef}
-      className="min-h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${leaf2})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        width: "100vw",
         minHeight: "100vh",
         fontFamily: "'Merriweather', serif",
       }}
+      className="min-h-screen w-full relative overflow-hidden"
     >
       {/* Overlay leaf image */}
       <img
@@ -134,80 +159,140 @@ const FeaturesPage: React.FC = () => {
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
         style={{ mixBlendMode: "multiply", opacity: 0.7 }}
       />
-      <div className="container mx-auto px-4 py-16 relative z-10 flex flex-col items-center">
+
+      {/* Main content wrapper for consistent width */}
+      <div className="max-w-7xl mx-auto px-4 py-16 relative z-10 flex flex-col items-center">
         {/* Intro Section */}
-        <div ref={heroRef} className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold text-[#284139] mb-4 leading-tight">FEATURES</h1>
-          <p className="text-lg md:text-xl text-[#284139]/80 max-w-2xl mx-auto leading-relaxed">
+        <div ref={heroRef} className="text-center mb-16 max-w-4xl">
+          {/* <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#284139] to-[#3a5a4f] rounded-full mb-6 shadow-2xl">
+            <CheckCircle className="w-10 h-10 text-[#F8D794]" />
+          </div> */}
+          <h1 className="text-5xl md:text-7xl font-bold text-[#284139] mb-6 leading-tight">
+            FEATURES
+            {/* <span className="block text-transparent bg-gradient-to-r from-[#284139] to-[#3a5a4f] bg-clip-text">
+              FEATURES
+            </span> */}
+          </h1>
+          {/* <div className="w-24 h-1 bg-gradient-to-r from-[#284139] to-[#F8D794] mx-auto mb-6 rounded-full"></div> */}
+          <p className="text-lg md:text-xl text-[#284139]/80 max-w-3xl mx-auto leading-relaxed">
             Nirvana Gardens is designed for modern, secure, and comfortable living. Our thoughtfully planned features
             and security systems ensure peace of mind and a premium lifestyle for every resident.
           </p>
         </div>
-        {/* Image + Content Card */}
+
+        {/* Stats Section */}
+        <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 w-full max-w-4xl">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white/20 backdrop-blur-xl rounded-2xl p-6 text-center border border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#284139] to-[#3a5a4f] rounded-full mb-4 text-[#F8D794]">
+                {stat.icon}
+              </div>
+              <div className="text-3xl font-bold text-[#284139] mb-2">{stat.number}</div>
+              <div className="text-[#284139]/70 font-medium">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Enhanced Image + Content Card */}
         <div
           ref={cardRef}
-          className="w-full max-w-5xl bg-white/30 backdrop-blur-xl rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden border border-white/20"
+          className="w-full max-w-6xl bg-white/25 backdrop-blur-2xl rounded-3xl shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-white/30 relative"
         >
-          {/* Left: Image fills gray box */}
+          {/* Decorative corner elements */}
+          <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-[#284139]/20 to-transparent rounded-br-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-[#F8D794]/20 to-transparent rounded-tl-3xl"></div>
+
+          {/* Left: Enhanced Image Section */}
           <div
             ref={imageRef}
-            className="md:w-1/2 w-full h-[350px] md:h-auto bg-[#e9ede7] flex items-stretch justify-center"
+            className="lg:w-1/2 w-full h-[400px] lg:h-auto bg-gradient-to-br from-[#e9ede7] to-[#d4ddd2] flex items-stretch justify-center relative overflow-hidden"
           >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#284139]/10 to-transparent"></div>
             <img
               src={livingroom || "/placeholder.svg"}
               alt="Premium Building"
-              className="w-full h-full object-cover rounded-none md:rounded-l-3xl"
+              className="w-full h-full object-cover rounded-none lg:rounded-l-3xl relative z-10 hover:scale-105 transition-transform duration-700"
               style={{ objectPosition: "center" }}
             />
+            {/* Image overlay with gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#284139]/20 via-transparent to-transparent z-20"></div>
           </div>
-          {/* Right: Features */}
-          <div className="md:w-1/2 w-full flex flex-col justify-center p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-[#284139]/80 mb-8 drop-shadow-lg">Key Features</h2>
 
-            <ul ref={featuresRef} className="space-y-6 mb-10">
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <Shield size={32} />
-                </span>
-                Earthquake-resistant RCC structure
-              </li>
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <Flame size={32} />
-                </span>
-                Integrated fire protection systems
-              </li>
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <Trash2 size={32} />
-                </span>
-                Garbage disposal system
-              </li>
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <MoveUpRight size={32} />
-                </span>
-                High-speed passenger lifts & stretcher lift
-              </li>
-            </ul>
+          {/* Right: Enhanced Features Section */}
+          <div className="lg:w-1/2 w-full flex flex-col justify-center p-8 lg:p-12 relative">
+            {/* Background pattern */}
+            <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
+              <div className="w-full h-full bg-gradient-to-br from-[#284139] to-transparent rounded-full"></div>
+            </div>
 
-            <h2 className="text-2xl font-bold text-[#284139]/80 mb-6 drop-shadow-lg">3-Tier Security Features</h2>
-            <ul ref={securityRef} className="space-y-6">
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <KeyRound size={32} />
-                </span>
-                Godrej video door phone
-              </li>
-              <li className="flex items-center text-xl text-[#284139]/80 font-semibold drop-shadow-lg">
-                <span className="mr-4 text-[#284139]/80">
-                  <PhoneCall size={32} />
-                </span>
-                Intercom connection to clubhouse, security, parking, and other apartments
-              </li>
-            </ul>
+            <div className="relative z-10">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#284139] to-[#3a5a4f] rounded-xl flex items-center justify-center mr-4">
+                  <Star className="w-6 h-6 text-[#F8D794]" />
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-[#284139] drop-shadow-lg">Key Features</h2>
+              </div>
+
+              <ul ref={featuresRef} className="space-y-6 mb-12">
+                <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                  <div className="mr-4 p-3 bg-gradient-to-br from-[#284139]/10 to-[#284139]/5 rounded-xl group-hover:from-[#284139]/20 group-hover:to-[#284139]/10 transition-all duration-300">
+                    <Shield size={28} className="text-[#284139]" />
+                  </div>
+                  <span className="flex-1">Earthquake-resistant RCC structure</span>
+                </li>
+                <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                  <div className="mr-4 p-3 bg-gradient-to-br from-[#284139]/10 to-[#284139]/5 rounded-xl group-hover:from-[#284139]/20 group-hover:to-[#284139]/10 transition-all duration-300">
+                    <Flame size={28} className="text-[#284139]" />
+                  </div>
+                  <span className="flex-1">Integrated fire protection systems</span>
+                </li>
+                <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                  <div className="mr-4 p-3 bg-gradient-to-br from-[#284139]/10 to-[#284139]/5 rounded-xl group-hover:from-[#284139]/20 group-hover:to-[#284139]/10 transition-all duration-300">
+                    <Trash2 size={28} className="text-[#284139]" />
+                  </div>
+                  <span className="flex-1">Garbage disposal system</span>
+                </li>
+                <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                  <div className="mr-4 p-3 bg-gradient-to-br from-[#284139]/10 to-[#284139]/5 rounded-xl group-hover:from-[#284139]/20 group-hover:to-[#284139]/10 transition-all duration-300">
+                    <MoveUpRight size={28} className="text-[#284139]" />
+                  </div>
+                  <span className="flex-1">High-speed passenger lifts & stretcher lift</span>
+                </li>
+              </ul>
+
+              <div className="border-t border-[#284139]/20 pt-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#284139] to-[#3a5a4f] rounded-lg flex items-center justify-center mr-3">
+                    <Shield className="w-5 h-5 text-[#F8D794]" />
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-[#284139] drop-shadow-lg">3-Tier Security</h3>
+                </div>
+                <ul ref={securityRef} className="space-y-6">
+                  <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                    <div className="mr-4 p-3 bg-gradient-to-br from-[#F8D794]/20 to-[#F8D794]/10 rounded-xl group-hover:from-[#F8D794]/30 group-hover:to-[#F8D794]/20 transition-all duration-300">
+                      <KeyRound size={28} className="text-[#284139]" />
+                    </div>
+                    <span className="flex-1">Godrej video door phone</span>
+                  </li>
+                  <li className="flex items-center text-lg lg:text-xl text-[#284139] font-semibold drop-shadow-lg group hover:scale-105 transition-transform duration-300">
+                    <div className="mr-4 p-3 bg-gradient-to-br from-[#F8D794]/20 to-[#F8D794]/10 rounded-xl group-hover:from-[#F8D794]/30 group-hover:to-[#F8D794]/20 transition-all duration-300">
+                      <PhoneCall size={28} className="text-[#284139]" />
+                    </div>
+                    <span className="flex-1">
+                      Intercom connection to clubhouse, security, parking, and other apartments
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Bottom decorative element */}
+        <div className="mt-16 w-full max-w-4xl h-1 bg-gradient-to-r from-transparent via-[#284139]/30 to-transparent rounded-full"></div>
       </div>
     </div>
   )

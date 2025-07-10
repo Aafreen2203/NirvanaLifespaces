@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect, useRef } from "react"
 import { BedDouble, Bath, Car, ArrowRight, Home } from "lucide-react"
 import { gsap } from "gsap"
@@ -234,19 +233,65 @@ export default function FloorPlan() {
           <div className="w-120 h-1 bg-gradient-to-r from-[#284139] to-transparent mx-auto rounded-full"></div>
         </div>
 
-        {/* Main Floor Plan */}
-        <div ref={mainImageRef} className="w-full flex justify-center mb-20">
-          <div className="rounded-3xl shadow-[0_20px_60px_-15px_rgba(40,65,57,0.3)] hover:shadow-[0_25px_80px_-20px_rgba(40,65,57,0.4)] transition-all duration-500 group transform hover:scale-[1.02] hover:-translate-y-2">
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src={NirvanaFloorPlan}
-                alt="Main Floor Plan"
-                className="rounded-2xl w-full h-auto transform group-hover:scale-105 transition-transform duration-700 shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#284139]/5 to-transparent rounded-2xl"></div>
+        {/* Enhanced Main Floor Plan */}
+        <div ref={mainImageRef} className="w-full flex justify-center mb-20 relative">
+          {/* Decorative Frame Elements */}
+          <div className="absolute -top-8 -left-8 w-16 h-16 border-l-4 border-t-4 border-[#284139]/30 rounded-tl-2xl"></div>
+          <div className="absolute -top-8 -right-8 w-16 h-16 border-r-4 border-t-4 border-[#284139]/30 rounded-tr-2xl"></div>
+          <div className="absolute -bottom-8 -left-8 w-16 h-16 border-l-4 border-b-4 border-[#284139]/30 rounded-bl-2xl"></div>
+          <div className="absolute -bottom-8 -right-8 w-16 h-16 border-r-4 border-b-4 border-[#284139]/30 rounded-br-2xl"></div>
+
+          {/* Main Frame Container */}
+          {/* <div className="relative p-8 bg-gradient-to-br from-white/40 via-white/20 to-[#F8D794]/20 backdrop-blur-xl rounded-3xl border-2 border-white/30 shadow-[0_25px_80px_-20px_rgba(40,65,57,0.4)] hover:shadow-[0_35px_100px_-25px_rgba(40,65,57,0.5)] transition-all duration-700 group transform hover:scale-[1.02] hover:-translate-y-3"> */}
+            {/* Inner Decorative Border */}
+            <div className="relative p-6 bg-gradient-to-br from-[#284139]/5 to-[#F8D794]/10 rounded-2xl border border-[#284139]/10 shadow-[0_25px_80px_-20px_rgba(40,65,57,0.4)] hover:shadow-[0_35px_100px_-25px_rgba(40,65,57,0.5)] transition-all duration-700 group transform hover:scale-[1.02] hover:-translate-y-3">
+              {/* Premium Frame */}
+              <div className="relative overflow-hidden rounded-xl bg-white/30 p-8 shadow-inner">
+                {/* Corner Ornaments */}
+                <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-[#284139]/40 rounded-tl-lg"></div>
+                <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-[#284139]/40 rounded-tr-lg"></div>
+                <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-[#284139]/40 rounded-bl-lg"></div>
+                <div className="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-[#284139]/40 rounded-br-lg"></div>
+
+                {/* Image Container */}
+                <div className="relative overflow-hidden rounded-lg shadow-2xl">
+                  <img
+                    src={NirvanaFloorPlan || "/placeholder.svg"}
+                    alt="Main Floor Plan"
+                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Elegant Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#284139]/20  via-transparent to-[#F8D794]/5 rounded-lg"></div>
+
+                  {/* Premium Badge */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-[#284139] to-[#2a4540] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg backdrop-blur-sm">
+                    Master Plan
+                  </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-gradient-to-r from-[#284139]/20 to-[#F8D794]/20 rounded-b-full"></div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-gradient-to-r from-[#F8D794]/20 to-[#284139]/20 rounded-t-full"></div>
+              </div>
+
+              {/* Side Decorative Lines */}
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-transparent via-[#284139]/30 to-transparent rounded-full"></div>
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-transparent via-[#284139]/30 to-transparent rounded-full"></div>
+            </div>
+
+            {/* Floating Accent Elements */}
+            <div className="absolute -top-4 left-1/4 w-3 h-3 bg-[#F8D794] rounded-full shadow-lg animate-pulse"></div>
+            <div
+              className="absolute -bottom-4 right-1/4 w-3 h-3 bg-[#284139] rounded-full shadow-lg animate-pulse"
+              style={{ animationDelay: "1s" }}
+            ></div>
+
+            {/* Premium Label */}
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#F8D794] to-[#e6c77a] text-[#284139] px-6 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-white/50">
+              Architectural Excellence
             </div>
           </div>
-        </div>
+        {/* </div>   */}
 
         {/* Layout Options Section */}
         <div className="w-full max-w-6xl">

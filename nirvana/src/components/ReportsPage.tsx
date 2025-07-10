@@ -122,15 +122,14 @@ export default function NirvanaLifespaces() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${leaf2})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        width: "100vw",
         minHeight: "100vh",
       }}
+      className="min-h-screen w-full relative overflow-hidden"
     >
       {/* Overlay leaf image */}
       <img
@@ -139,7 +138,7 @@ export default function NirvanaLifespaces() {
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
         style={{ mixBlendMode: "multiply", opacity: 0.7 }}
       />
-      <div className="container mx-auto px-4 py-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 py-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
           {/* Left Content */}
           <div className="space-y-8">

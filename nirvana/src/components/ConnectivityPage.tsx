@@ -400,6 +400,17 @@ const KalyanConnectivityShowcase: React.FC = () => {
         </div>
       </div>
 
+       {/* Decorative Line */}
+      <div className="flex items-center justify-center mb-8">
+        <div className="w-86 h-1 bg-gradient-to-r from-transparent to-[#284139]/30 rounded-full"></div>
+        <div className="w-8 h-8 bg-gradient-to-br from-[#284139]/20 to-[#F8D794]/20 rounded-full mx-4 flex items-center justify-center">
+          <div className="w-3 h-3 bg-[#284139] rounded-full"></div>
+        </div>
+        <div className="w-86 h-1 bg-gradient-to-l from-transparent to-[#284139]/30 rounded-full"></div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#284139]/20 via-[#F8D794]/30 to-[#284139]/20"></div>
+
       {/* Nearby Facilities Section */}
       <div ref={facilitiesRef} className="py-16 px-8">
         <div className="max-w-7xl mx-auto">
