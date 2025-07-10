@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
       >
         {/* Logo (left) */}
         <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <img src={logo} alt="Nirvana Gardens Logo" className="h-10 w-auto mr-3" style={{maxHeight:'40px'}} />
+          <img src={logo} alt="Nirvana Gardens Logo" className="h-24 w-auto mr-3" style={{maxHeight:'48px'}} />
         </div>
 
         {/* Navbar Links (right) */}
