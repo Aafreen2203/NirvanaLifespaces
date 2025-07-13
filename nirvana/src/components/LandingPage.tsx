@@ -26,7 +26,9 @@ const App: React.FC = () => {
       className="h-screen bg-cover bg-center relative font-serif"
       style={{ backgroundImage: `url(${b5})`, fontFamily: "'Merriweather', serif" }}
     >
-      <div className="absolute inset-0 z-10" style={{background: "linear-gradient(90deg, #284139cc 0%, #28413966 60%, #28413933 100%)"}} />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 z-10" style={{background: "linear-gradient(90deg, #284139cc 0%, #28413966 15%, #28413933 60%)"}} />
       <Navbar />
 
       {/* Animated Lines - Above Nirvana */}
