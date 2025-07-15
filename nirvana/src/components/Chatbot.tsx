@@ -24,7 +24,7 @@ const ChatBot: React.FC = () => {
   const toggleChat = () => {
     setIsOpen(!isOpen);
     if (!isOpen && messages.length === 0) {
-      addBotMessage("Hello! Welcome to ReaEspresso Digital Marketing. How can I help you today?");
+      addBotMessage("Hello! Welcome to Nirvana Gardens. How can I help you today?");
     }
   };
 
@@ -67,7 +67,8 @@ const ChatBot: React.FC = () => {
     }]);
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch('/chat', {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
