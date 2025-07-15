@@ -361,7 +361,8 @@ export default function FloorPlan() {
                     ))}
                   </div>
 
-                  <button className="bg-gradient-to-r from-[#284139] to-[#2a4540] hover:from-[#2a4540] hover:to-[#284139] text-white px-8 py-4 rounded-2xl font-semibold shadow-lg transition-all duration-300 mt-6 flex items-center gap-2 group transform hover:scale-105 hover:-translate-y-1">
+                  <button className="bg-gradient-to-r from-[#284139] to-[#2a4540] hover:from-[#2a4540] hover:to-[#284139] text-white px-8 py-4 rounded-2xl font-semibold shadow-lg transition-all duration-300 mt-6 flex items-center gap-2 group transform hover:scale-105 hover:-translate-y-1"
+                    onClick={() => window.dispatchEvent(new CustomEvent('openContactPopup'))}>
                     Request Details
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </button>

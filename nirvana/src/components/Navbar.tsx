@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { submitEnquiryForm } from "../services/formService";
-import type { FormData } from "../services/formService";
 import logo from '../assets/logo.png';
 
 const Navbar: React.FC = () => {
@@ -121,7 +120,12 @@ const Navbar: React.FC = () => {
       >
         {/* Logo (left) */}
         <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <img src={logo} alt="Nirvana Gardens Logo" className="h-24 w-auto mr-3" style={{maxHeight:'48px'}} />
+          <img
+            src={logo}
+            alt="Nirvana Gardens Logo"
+            className="h-10 w-auto mr-3 sm:h-12 md:h-16"
+            style={{ maxHeight: '48px' }}
+          />
         </div>
 
         {/* Navbar Links (right) */}
@@ -137,13 +141,30 @@ const Navbar: React.FC = () => {
           className="md:hidden text-3xl text-[#F8D794] focus:outline-none ml-auto"
           onClick={() => setMobileMenuOpen((open) => !open)}
         >
-          {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
+          {mobileMenuOpen ? (
+            <HiX />
+          ) : (
+            // Hamburger icon with 3 lines
+            <span className="flex flex-col justify-center items-center w-8 h-8">
+              <span className="block w-7 h-1 bg-[#F8D794] rounded mb-1"></span>
+              <span className="block w-7 h-1 bg-[#F8D794] rounded mb-1"></span>
+              <span className="block w-7 h-1 bg-[#F8D794] rounded"></span>
+            </span>
+          )}
         </button>
       </nav>
 
       {/* Mobile Fullscreen Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#111A19]/90 backdrop-blur-sm flex flex-col items-center justify-center text-[#F8D794] font-serif">
+        <div className="fixed inset-0 z-50 bg-[#111A19]/90 backdrop-blur-sm flex flex-col items-center justify-center text-[#F8D794] font-serif">
+          {/* Close button for mobile menu */}
+          <button
+            className="absolute top-6 right-6 text-3xl"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <HiX />
+          </button>
           <ul className="space-y-8 text-2xl font-semibold">
             <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); document.getElementById('rooms')?.scrollIntoView({behavior:'smooth'}); }}>Project</li>
             <li className="hover:text-[#809076] cursor-pointer" onClick={() => { setMobileMenuOpen(false); document.getElementById('features')?.scrollIntoView({behavior:'smooth'}); }}>Features</li>
