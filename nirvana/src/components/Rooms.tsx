@@ -163,9 +163,9 @@ export default function ImageGallery() {
         </div>
 
         {/* Image Grid */}
-        <div ref={gridRef} className="grid grid-cols-6 grid-rows-3 gap-6 h-auto lg:h-[700px]">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-3 gap-6 h-auto md:h-[700px]">
           {/* Architecture Villa Design (spans rows 1-2, cols 1-3, slightly smaller than before) */}
-          <div className="col-span-3 row-span-2">
+          <div className="col-span-1 md:col-span-3 md:row-span-2">
             <div
               className={`relative w-full h-72 lg:h-full rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
               onMouseEnter={() => handleMouseEnter(0)}
@@ -195,7 +195,7 @@ export default function ImageGallery() {
           </div>
 
           {/* Bedroom (row 1, cols 4-6, bigger) */}
-          <div className="col-span-3 row-span-1">
+          <div className="col-span-1 md:col-span-3 md:row-span-1">
             <div
               className={`relative h-48 lg:h-[220px] rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
               onMouseEnter={() => handleMouseEnter(1)}
@@ -224,7 +224,7 @@ export default function ImageGallery() {
           </div>
 
           {/* Bathroom (row 2, cols 4-6, bigger) */}
-          <div className="col-span-3 row-span-1">
+          <div className="col-span-1 md:col-span-3 md:row-span-1">
             <div
               className={`relative h-48 lg:h-[220px] rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
               onMouseEnter={() => handleMouseEnter(2)}
@@ -252,8 +252,8 @@ export default function ImageGallery() {
             </div>
           </div>
 
-          {/* Kitchen (row 3, col 1-3, bigger) */}
-          <div className="col-span-3 row-span-1">
+          {/* Kitchen (row 3, cols 1-3) */}
+          <div className="col-span-1 md:col-span-3 md:row-span-1">
             <div
               className={`relative h-48 lg:h-[220px] rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
               onMouseEnter={() => handleMouseEnter(3)}
@@ -281,8 +281,8 @@ export default function ImageGallery() {
             </div>
           </div>
 
-          {/* Living Space (row 3, col 4-6, bigger) */}
-          <div className="col-span-3 row-span-1">
+          {/* Living Room (row 3, cols 4-6) */}
+          <div className="col-span-1 md:col-span-3 md:row-span-1">
             <div
               className={`relative h-48 lg:h-[220px] rounded-lg overflow-hidden cursor-pointer group transition-all duration-500 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
               onMouseEnter={() => handleMouseEnter(4)}
